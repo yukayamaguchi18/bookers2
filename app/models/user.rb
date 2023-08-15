@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :image
   has_many :books, dependent: :destroy
+  validates :name, length: { minimum: 2 }
 
 
 end

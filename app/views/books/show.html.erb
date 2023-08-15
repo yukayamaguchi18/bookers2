@@ -1,35 +1,5 @@
 <div class="row d-flex justify-content-center">
-  <div class="col-2">
-    <h1>Users info</h1>
-    <% if current_user.image.attached? %>
-      <%= image_tag current_user.image, size: "100x100" %>
-    <% else %>
-      <%= image_tag 'default-image', size: "100x100" %>
-    <% end %>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><b>name</b></td>
-          <td><b><%= current_user.name %></b></td>
-        </tr>
-        <tr>
-          <td><b>introduction</b></td>
-          <td><b><%= current_user.introduction %></b></td>
-        </tr>
-      </tbody>
-    </table>
-      <a href="user/#{current_user.id}/edit" class="btn btn-outline-secondary btn-block">
-        <i class="fa-solid fa-user-gear" style="color: #8b8e92;"></i>
-      </a>
-    <h1>New book</h1>
-      <%= form_with model: Book.new do |f| %>
-        <h5>Title</h5>
-        <%= f.text_field :title %>
-        <h5>Opinion</h5>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', :class => "btn btn-sm btn-success" %>
-      <% end %>
-  </div>
+  <%= render 'sidebar', book: @book %>
   <div class="col-6">
     <h1>Book detail</h1>
     <table class="table">
@@ -53,10 +23,14 @@
             <%= @book.body %>
           </td>
           <td>
-            <%=link_to "Edit", edit_book_path(@book.id), :class => "btn btn-sm btn-success"%>
+            <% if @book.user_id == current_user.id %>
+              <%=link_to "Edit", edit_book_path(@book.id), :class => "btn btn-sm btn-success"%>
+            <% end %>
           </td>
           <td>
-            <%=link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-sm btn-danger" %>
+            <% if @book.user_id == current_user.id %>
+              <%=link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?", :class => "btn btn-sm btn-danger" %>
+            <% end %>
           </td>
         </tr>
       </tbody>

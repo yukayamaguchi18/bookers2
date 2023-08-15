@@ -1,35 +1,15 @@
-<div class="row d-flex justify-content-center">
-  <div class="col-2">
-    <h1>Users info</h1>
-    <% if current_user.image.attached? %>
-      <%= image_tag current_user.image, size: "100x100" %>
-    <% else %>
-      <%= image_tag 'default-image', size: "100x100" %>
-    <% end %>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><b>name</b></td>
-          <td><b><%= current_user.name %></b></td>
-        </tr>
-        <tr>
-          <td><b>introduction</b></td>
-          <td><b><%= current_user.introduction %></b></td>
-        </tr>
-      </tbody>
-    </table>
-      <a href="user/#{current_user.id}/edit" class="btn btn-outline-secondary btn-block">
-        <i class="fa-solid fa-user-gear" style="color: #8b8e92;"></i>
-      </a>
-    <h1>New book</h1>
-      <%= form_with model: Book.new do |f| %>
-        <h5>Title</h5>
-        <%= f.text_field :title %>
-        <h5>Opinion</h5>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book', :class => "btn btn-sm btn-success" %>
+<div class="col-8 mx-auto">
+  <% if @book.errors.any? %>
+    <h2><%= @book.errors.count %>error prohibited this obj from being saved:</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
-  </div>
+    </ul>
+  <% end %>
+</div>
+<div class="row d-flex justify-content-center">
+<%= render 'sidebar', book: @book %>
   <div class="col-6">
     <h1>Books</h1>
     <table class="table">
@@ -39,8 +19,8 @@
         <th><b>Opinion</b></th>
       </thead>
       <tbody>
+        <% @books.each do |book| %>
         <tr>
-          <% @books.each do |book| %>
           <td>
             <a href="/users/#{book.user_id}">
               <% if book.user.image.attached? %>
@@ -56,8 +36,8 @@
           <td>
             <%= book.body %>
           </td>
-          <% end %>
         </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
