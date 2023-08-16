@@ -1,7 +1,7 @@
-  <div class="col-4">
+  <div class="col-md-3">
     <h1>Users info</h1>
-    <% if current_user.image.attached? %>
-      <%= image_tag current_user.image, size: "100x100" %>
+    <% if @user.profile_image.attached? %>
+      <%= image_tag @user.profile_image, size: "100x100" %>
     <% else %>
       <%= image_tag 'default-image', size: "100x100" %>
     <% end %>
@@ -9,16 +9,16 @@
       <tbody>
         <tr>
           <td><b>name</b></td>
-          <td><b><%= current_user.name %></b></td>
+          <td><b><%= @user.name %></b></td>
         </tr>
         <tr>
           <td><b>introduction</b></td>
-          <td><b><%= current_user.introduction %></b></td>
+          <td><b><%= @user.introduction %></b></td>
         </tr>
       </tbody>
     </table>
-      <%=link_to edit_user_path(current_user.id), class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fa-solid fa-user-gear" style="color: #8b8e92;"></i>
+      <%=link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fa-solid fa-user-cog" style="color: #8b8e92;"></i>
       <% end %>
     <h1>New book</h1>
       <%= form_with model: Book.new do |f| %>

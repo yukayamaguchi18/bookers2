@@ -24,7 +24,7 @@
               <% if user_signed_in? %>
                 <li>
                   <%= link_to user_path(current_user.id), :class => "text-white mx-3" do %>
-                    <i class="fa-solid fa-house-chimney" style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-home" style="color: #ffffff;"></i>
                     <span>Home</span>
                   <% end %>
                 </li>
@@ -42,14 +42,14 @@
                 </li>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-sign-out-alt" style="color: #ffffff;"></i>
                     <span>Log out</span>
                   <% end %>
                 </li>
               <% else %>
                 <li>
                   <%= link_to root_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-house-chimney" style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-home" style="color: #ffffff;"></i>
                     <span>Home</span>
                   <% end %>
                 </li>
@@ -67,7 +67,7 @@
                 </li>
                 <li>
                   <%= link_to new_user_session_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-sign-in-alt" style="color: #ffffff;"></i>
                     <span>Log in</span>
                   <% end %>
                 </li>
@@ -77,10 +77,11 @@
         </div>
       </nav>
     </header>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-    
-    <%= yield %>
+    <main>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+      <%= yield %>
+    </main>
     <footer>
       <div class="container mt-5">
         <div class="row">
