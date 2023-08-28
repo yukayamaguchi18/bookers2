@@ -42,5 +42,4 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-
 end
