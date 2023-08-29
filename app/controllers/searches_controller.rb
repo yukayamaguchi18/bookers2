@@ -8,8 +8,10 @@ class SearchesController < ApplicationController
 
     if @range == '1'
       @user = User.search(search,word)
-    else
+    elsif @range == '2'
       @book = Book.search(search,word)
+    else
+      redirect_to request.referer
     end
   end
 
