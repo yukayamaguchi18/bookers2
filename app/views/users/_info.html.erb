@@ -1,0 +1,31 @@
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image, size: "100x100" %>
+    <% else %>
+      <%= image_tag 'default-image', size: "100x100" %>
+    <% end %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><b>name</b></td>
+          <td><b><%= user.name %></b></td>
+        </tr>
+        <tr>
+          <td><b>introduction</b></td>
+          <td><b><%= user.introduction %></b></td>
+        </tr>
+        <tr>
+          <td><b>follows</b></td>
+          <td><b><%= link_to user.followings.count, user_followings_path(user) %></b></td>
+        </tr>
+        <tr>
+          <td><b>followers</b></td>
+          <td><b><%= link_to user.followers.count, user_followers_path(user) %></b></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= render "relationships/follow", user: user %>
+    <% unless user.guest_user? %>
+      <%=link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fa-solid fa-user-cog" style="color: #8b8e92;"></i>
+      <% end %>
+    <% end %>

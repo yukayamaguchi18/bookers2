@@ -1,6 +1,12 @@
 <div class="container">
+  <%= render 'layouts/error', obj: Book.new %>
   <div class="row mx-auto">
-    <%= render 'sidebar', user: @book.user %>
+    <div class="col-md-3">
+      <h1>Users info</h1>
+      <%= render 'users/info', user: current_user %>
+      <h1>New book</h1>
+      <%= render 'form', book: Book.new %>
+    </div>
     <div class="col-md-8 offset-md-1">
       <h1>Book detail</h1>
       <table class="table">
@@ -23,7 +29,7 @@
             <td>
               <%= @book.body %>
             </td>
-            <td class="favorite-btn">
+            <td class="favorite-btn_<%= @book.id %>">
               <%= render 'favorites/favorite', book: @book %>
             </td>
             <td>コメント数:<%= @book.book_comments.count %></td>
@@ -40,17 +46,10 @@
           </tr>
         </tbody>
       </table>
-      <table>
         <%= render 'book_comments/comment', book: @book %>
-      </table>
-      <%= form_with model:[@book, @book_comment], local: false do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: '5', class: 'form-control book_body' %>
+        <div class="comment-form_<%= @book_comment.id %>">
+          <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
         </div>
-        <div class="form-group">
-          <%= f.submit "送信" %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>

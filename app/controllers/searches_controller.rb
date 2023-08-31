@@ -8,9 +8,9 @@ class SearchesController < ApplicationController
     @word = params[:word]
 
     if @range == '1'
-      @user = User.search(search,word)
+      @records = User.search(search,word)
     elsif @range == '2'
-      @book = Book.search(search,word)
+      @records = Book.search(search,word)
     else
       redirect_to request.referer
     end

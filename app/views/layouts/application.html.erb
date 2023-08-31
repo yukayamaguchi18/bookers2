@@ -12,95 +12,13 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand p-3 text-white" href="/">Bookers</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto text-decoration-none">
-              <% if user_signed_in? %>
-                <li>
-                  <%= link_to user_path(current_user.id), :class => "text-white mx-3" do %>
-                    <i class="fa-solid fa-home" style="color: #ffffff;"></i>
-                    <span>Home</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to users_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-users" style="color: #ffffff;"></i>
-                    <span>Users</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to books_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-book-open" style="color: #ffffff;"></i>
-                    <span>Books</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to destroy_user_session_path, method: :delete, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-sign-out-alt" style="color: #ffffff;"></i>
-                    <span>Log out</span>
-                  <% end %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to root_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-home" style="color: #ffffff;"></i>
-                    <span>Home</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to home_about_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-link" style="color: #ffffff;"></i>
-                    <span>About</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to new_user_registration_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i>
-                    <span>Sign up</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to new_user_session_path, :class => "text-white m-3" do %>
-                    <i class="fa-solid fa-sign-in-alt" style="color: #ffffff;"></i>
-                    <span>Log in</span>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="text-center">
-        <% if user_signed_in? %>
-          <%= form_tag(search_path, method: :get) do %>
-            <%= text_field_tag (:word) %>
-            <%= select_tag 'range' ,options_for_select([['---選択してください---', ''], ['User', '1'], ['Book', '2']]) %>
-            <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-            <%= submit_tag "検索" %>
-           <% end %>
-        <% end %>
-      </div>
-
-    </header>
+    <%= render 'layouts/header' %>
+    <%= render 'searches/form' %>
     <main>
       <%= flash[:notice] %>
       <%= flash[:alert] %>
       <%= yield %>
     </main>
-    <footer>
-      <div class="container mt-5">
-        <div class="row">
-          <div class="mx-auto">
-            <p>CopyRight Infratop.inc</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

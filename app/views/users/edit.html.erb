@@ -1,14 +1,7 @@
 <div class="container">
   <div class="col-6 mx-auto">
     <h1>User info</h1>
-    <% if @user.errors.any? %>
-      <h2><%= @user.errors.count %>error prohibited this obj from being saved:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render "layouts/error", obj: @user %>
     <%= form_with model: @user do |f| %>
       <h4>Name</h4>
       <%= f.text_field :name %>
