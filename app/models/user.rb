@@ -20,6 +20,10 @@ class User < ApplicationRecord
   # 被フォロー関係を通じて参照→自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  has_many :messages, dependent: :destroy
+
+  has_many :view_counts, dependent: :destroy
+
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
 
@@ -52,6 +56,11 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  # フォローされているか判定
+  def followed?(user)
+    followers.include?(user)
+  end
+
 
   def self.search(search,word)
     if search == "forward_match"

@@ -29,7 +29,7 @@
             <td>
               <%= @book.body %>
             </td>
-            <td class="favorite-btn_<%= book.id %>">
+            <td class="favorite-btn_<%= @book.id %>">
               <%= render 'favorites/favorite-btn', book: @book %>
             </td>
             <td>コメント数:<%= @book.book_comments.count %></td>
@@ -43,6 +43,7 @@
                 <%=link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?", :class => "btn btn-sm btn-danger" %>
               <% end %>
             </td>
+            <td>閲覧数: <%= @book.view_counts.count %></td>
           </tr>
         </tbody>
       </table>

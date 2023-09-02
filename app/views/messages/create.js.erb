@@ -1,0 +1,3 @@
+$(".messages").html("<%= j(render 'messages/message', messages: @messages) %>");
+$(".chat-error").html("<%= j(render 'layouts/error', obj: @message) %>");
+$(".message_field").val('');

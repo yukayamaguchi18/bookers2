@@ -23,7 +23,12 @@
         </tr>
       </tbody>
     </table>
-    <%= render "relationships/follow", user: user %>
+    <div class="row">
+      <% unless user == current_user %>
+        <%= render "relationships/follow", user: user %>
+        <%= render "messages/chat-btn", user: user %>
+      <% end %>
+    </div>
     <% unless user.guest_user? %>
       <%=link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fa-solid fa-user-cog" style="color: #8b8e92;"></i>
