@@ -1,2 +1,2 @@
-$(".comment-form").html("<%= j(render 'book_comments/form', book_comment: @book_comment) %>");
-$(".comment-form").html("<%= j(render 'book_comments/comment', book: @book) %>");
+$(".comments").html("<%= escape_javascript(render partial: 'book_comments/comment', locals: {book: @book}) %>");
+$(".comment_body").val("");
