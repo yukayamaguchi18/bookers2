@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'groups/new'
+  get 'groups/index'
+  get 'groups/show'
+  get 'groups/edit'
   devise_for :users
 
   devise_scope :user do
@@ -18,6 +22,8 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create,:destroy]
     resources :book_comments, only: [:create,:destroy]
   end
+
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update]
 
   get 'search' => 'searches#search'
   get "tag_searches/search" => "tag_searches#search"

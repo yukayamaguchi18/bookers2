@@ -2,14 +2,13 @@
   <div class="row mx-auto">
     <div class="col-md-3">
       <h1>Users info</h1>
-      <%= render 'info', user: current_user %>
+      <%= render 'users/info', user: current_user %>
       <h1>New book</h1>
       <%= render 'books/form', book: Book.new %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h1>Users</h1>
-      <%= link_to "グループを作成する", new_group_path %>｜<%= link_to "グループ一覧", groups_path %>
-      <%= render 'index', users: @users %>
+      <h1>Groups</h1>
+      <%= render 'index', groups: @groups %>
     </div>
   </div>
 </div>
