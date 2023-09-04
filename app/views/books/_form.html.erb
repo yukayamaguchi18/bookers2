@@ -1,7 +1,35 @@
       <%= form_with model: book do |f| %>
         <h5>Title</h5>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, class: "form-control" %>
         <h5>Opinion</h5>
-        <%= f.text_area :body %><br>
-        <%= f.submit 'Create Book', :class => "btn btn-sm btn-success" %>
+        <%= f.text_area :body, class: "form-control" %>
+        <h5>Rate</h5>
+        <% if book.id.nil? %>
+          <div id="post_raty"></div>
+        <% else %>
+          <%= render "star", book: book %>
+        <% end %>
+        <h5>Category</h5>
+        <%= f.text_field :category, class: "form-control book_category" %>
+        <br>
+        <%= f.submit :class => "btn btn-sm btn-success" %>
+
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if(elem == null) return;
+
+          elem.innerHTML = ""
+          let opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,
+            scoreName: 'book[score]',
+            };
+          raty(elem,opt);
+        });
+      </script>
+
       <% end %>

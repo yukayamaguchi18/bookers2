@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   get 'search' => 'searches#search'
+  get "tag_searches/search" => "tag_searches#search"
 
   get 'messages/:id' => 'messages#message', as: 'message'
   post 'messages' => 'messages#create', as: 'messages'

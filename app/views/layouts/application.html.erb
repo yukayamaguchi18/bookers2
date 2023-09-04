@@ -13,7 +13,10 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%= render 'searches/form' %>
+    <div class="d-flex justify-content-center">
+      <%= render 'searches/form' %>
+      <%= render 'tag_searches/tagsearch' %>
+    </div>
     <main>
       <%= flash[:notice] %>
       <%= flash[:alert] %>

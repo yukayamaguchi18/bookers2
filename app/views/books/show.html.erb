@@ -29,10 +29,18 @@
             <td>
               <%= @book.body %>
             </td>
+            <td>
+              <% if @book.category.present? %>
+                <%= link_to @book.category, tag_searches_search_path(content: @book.category) %>
+              <% end %>
+            </td>
             <td class="favorite-btn_<%= @book.id %>">
               <%= render 'favorites/favorite-btn', book: @book %>
             </td>
             <td>コメント数:<%= @book.book_comments.count %></td>
+            <td>
+              <%= render 'star', book: @book %>
+            </td>
             <td>
               <% if @book.user_id == current_user.id %>
                 <%=link_to "Edit", edit_book_path(@book.id), :class => "btn btn-sm btn-success"%>
