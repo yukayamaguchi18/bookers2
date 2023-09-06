@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'groups/new'
-  get 'groups/index'
-  get 'groups/show'
-  get 'groups/edit'
   devise_for :users
 
   devise_scope :user do
@@ -16,6 +12,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    get 'search' => 'users#search'
   end
 
   resources :books, only: [:show, :index, :edit, :create, :destroy, :update] do
