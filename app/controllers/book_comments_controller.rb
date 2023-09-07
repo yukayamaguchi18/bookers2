@@ -2,13 +2,13 @@ class BookCommentsController < ApplicationController
 
   def create
     @book = Book.find(params[:book_id])
-    book_comment = current_user.book_comments.new(book_comment_params)
-    book_comment.book_id = @book.id
-    unless book_comment.comment.blank?
-      book_comment.save
-    else
-      redirect_back fallback_location: root_path, notice: 'Comment cannot be blank.'
+    @book_comment = BookComment.new(book_comment_params)
+    @book_comment.book_id = @book.id
+    @book_comment.user_id = current_user.id
+    unless @book_comment.save
+      render 'error'  # app/views/book_comments/error.js.erbを参照する ※要件外
     end
+    # app/views/book_comments/create.js.erbを参照する
   end
 
   def destroy

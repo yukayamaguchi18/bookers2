@@ -1,0 +1,3 @@
+$(".tag-search-result").html("<%= escape_javascript(render partial: 'books/index', locals: {books: @records}) %>");
+
+<!--再度非同期通信を実装する場合はformをlocal:falseすること-->

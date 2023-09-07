@@ -1,0 +1,10 @@
+$(function() {
+    if(range = 1){
+        (".user-search-result").html("<%= escape_javascript(render partial: 'users/index', locals: {users: @records}) %>");
+    } else if(range = 2){
+        (".book-search-result").html("<%= escape_javascript(render partial: 'books/index', locals: {books: @records}) %>");
+    } else{
+    }
+});
+
+<!--再度非同期通信を実装する場合はformをlocal:falseすること-->

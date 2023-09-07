@@ -1,7 +1,7 @@
 <div class="container">
 
   <h2>Books search for "<%= @word %>" </h2>
-  <%= render "books/index", books: @books %>
-  </table>
+    <div class="tag-search-result">
+      <%= render "books/index", books: @records %>
+    </div>
 
-</div>

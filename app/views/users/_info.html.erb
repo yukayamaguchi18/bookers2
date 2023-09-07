@@ -15,17 +15,31 @@
         </tr>
         <tr>
           <td><b>follows</b></td>
-          <td><b><%= link_to user.followings.count, user_followings_path(user) %></b></td>
+          <td><b>
+            <%= link_to user_followings_path(user) do %>
+              <span class="followings-count_<%= user.id %>">
+                <%= render "relationships/followings-count", user: user %>
+              </span>
+            <% end %>
+          </b></td>
         </tr>
         <tr>
           <td><b>followers</b></td>
-          <td><b><%= link_to user.followers.count, user_followers_path(user) %></b></td>
+          <td><b>
+            <%= link_to user_followers_path(user) do %>
+              <span class="followers-count_<%= user.id %>">
+                <%= render "relationships/followers-count", user: user %>
+              </span>
+            <% end %>
+          </b></td>
         </tr>
       </tbody>
     </table>
     <div class="row">
       <% unless user == current_user %>
-        <%= render "relationships/follow", user: user %>
+        <div class="follow-btn_<%= user.id %>">
+          <%= render "relationships/follow", user: user %>
+        </div>
         <%= render "messages/chat-btn", user: user %>
       <% end %>
     </div>

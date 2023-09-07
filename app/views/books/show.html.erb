@@ -1,5 +1,6 @@
 <div class="container">
   <%= render 'layouts/error', obj: Book.new %>
+  <div id ="comments-error"></div>
   <div class="row mx-auto">
     <div class="col-md-3">
       <h1>Users info</h1>
@@ -11,7 +12,7 @@
       <h1>Book detail</h1>
       <table class="table">
         <tbody>
-          <tr>
+          <tr id="book_<%= @book.id %>">
             <td>
               <a href="/users/#{@book.user_id}">
                 <% if @book.user.profile_image.attached? %>
@@ -37,7 +38,7 @@
             <td class="favorite-btn_<%= @book.id %>">
               <%= render 'favorites/favorite-btn', book: @book %>
             </td>
-            <td>コメント数:<%= @book.book_comments.count %></td>
+            <td class="comments-count">コメント数: <%= @book.book_comments.count %></td>
             <td>
               <%= render 'star', book: @book %>
             </td>

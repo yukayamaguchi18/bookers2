@@ -1,2 +1,3 @@
-$(".comments").html("<%= escape_javascript(render partial: 'book_comments/comment', locals: {book: @book}) %>");
+$("#book_<%= @book.id %> .comments-count").html("コメント数: <%= @book.book_comments.count %>");
+$(".comments").html("<%= escape_javascript(render 'book_comments/comment', book: @book) %>");
 $(".comment_body").val("");

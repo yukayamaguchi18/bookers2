@@ -1,7 +1,11 @@
 <% if @range == '1' %>
   <h2>Users search for "<%= @word %>"</h2>
-  <%= render 'users/index', users: @records %>
+  <div class="user-search-result">
+    <%= render 'users/index', users: @records, range: @range %>
+  </div>
 <% elsif @range == '2' %>
   <h2>Books search for "<%= @word %>"</h2>
-  <%= render 'books/index', books: @records %>
+  <div class="book-search-result">
+    <%= render 'books/index', books: @records, range: @range %>
+  </div>
 <% end %>
